@@ -42,7 +42,10 @@ import { blockquoteSchema } from '@milkdown/preset-commonmark';
 import { $command, callCommand } from '@milkdown/utils';
 import { wrapIn } from '@milkdown/prose/commands';
 
-const wrapInBlockquoteCommand = $command('WrapInBlockquote', (ctx) => () => wrapIn(blockquoteSchema.type()))
+const wrapInBlockquoteCommand = $command('WrapInBlockquote', (ctx) => () => wrapIn(blockquoteSchema.type(ctx)))
+
+// register the command when creating the editor
+editor.use(wrapInBlockquoteCommand)
 
 // call command
 editor.action(callCommand(wrapInBlockquoteCommand.key));
